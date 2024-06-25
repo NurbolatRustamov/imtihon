@@ -25,14 +25,15 @@
           class="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <span
-            class="self-center text-2xl font-semibold whitespace-nowrap ml-[-66px]"
+            class="self-center text-2xl font-semibold whitespace-nowrap ml-[-66px] max-[1416px]:ml-[0px]"
             >Exam results</span
           >
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button
+            id="btn-add"
             type="button"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-[-82px]"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-[-82px] max-[1416px]:mr-[0px]"
           >
             Add new students +
           </button>
@@ -79,7 +80,9 @@
   </div> -->
       </div>
     </nav>
-    <section class="flex gap-[20px] justify-around pt-[40px]">
+    <section
+      class="flex gap-[20px] justify-around pt-[40px] max-[1092px]:block"
+    >
       <div>
         <div class="mb-6">
           <h2 class="tetx text-[30px] font-semibold font-[Poppins]">filter</h2>
@@ -145,7 +148,7 @@
         </div>
         <div class="relative overflow-x-auto shadow-md">
           <table
-            class="w-[927px] text-sm text-left rtl:text-right text-gray-500"
+            class="w-[927px] text-sm text-left rtl:text-right text-gray-500 max-[1416px]:w-[788px] max-[1227px]:w-[700px] max-[1092px]:w-full"
           >
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
               <tr>
@@ -158,43 +161,119 @@
                 <th scope="col" class="px-6 py-3">Delete</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="bg-white border-b">
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                >
-                  55
-                </th>
-                <td class="px-6 py-4">Nurbolat Rustamov</td>
-                <td class="px-6 py-4">22.06.2024 11.42</td>
-                <td class="px-6 py-4">67%</td>
-                <td class="px-6 py-4">
-                  <a href="#" class="font-medium text-blue-600 hover:underline">
-                    <button
-                      class="pt-[7px] pb-[8px] pl-[15px] pr-[15px] bg-[#438059] text-[#fff] rounded-[9px]"
-                    >
-                      Pass
-                    </button>
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="dfg w-[39px] h-[39px] rounded-[5px]">
-                    <i
-                      class="fa-solid fa-pen flex justify-center pt-[10px]"
-                    ></i>
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="dfgg w-[39px] h-[39px] rounded-[5px]">
-                    <i
-                      class="fa-solid fa-trash flex justify-center pt-[10px]"
-                    ></i>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            <tbody id="tbody"></tbody>
           </table>
+        </div>
+      </div>
+    </section>
+    <section
+      id="modal"
+      class="hidden w-full h-screen backdrop-blur-[5px] fixed z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+    >
+      <!-- Modal toggle -->
+
+      <!-- Main modal -->
+      <div
+        id="authentication-modal"
+        tabindex="-1"
+        aria-hidden="true"
+        class="overflow-y-auto overflow-x-hidden fixed z-20 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow">
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t"
+            >
+              <h3 class="text-xl font-semibold text-gray-900">Add students</h3>
+              <button
+                id="close-btn"
+                type="button"
+                class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                data-modal-hide="authentication-modal"
+              >
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+              <form class="space-y-4" action="#">
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >Name</label
+                  >
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Ismingizni yozing"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >LastName</label
+                  >
+                  <input
+                    type="text"
+                    name="password"
+                    id="password"
+                    placeholder="Familiyangizni yozing"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >Mark</label
+                  >
+                  <input
+                    type="text"
+                    name="password"
+                    id="passwords"
+                    placeholder="150"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required
+                  />
+                </div>
+                <div class="flex justify-between">
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5"></div>
+                  </div>
+                </div>
+                <button
+                  id="submit-btn"
+                  type="submit"
+                  class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                  Add student
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </section>
